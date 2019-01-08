@@ -27,8 +27,8 @@ The example above is pretty useful but has some downsides:
 
  - It’s not immediately clear that there’s a dependency to only `userName`
  - There’s quite some noise surrounding the core logic we’re implementing:
-  - `ko.pureComputed`
-  - The function wrapper `() => { /* … */ }`
+    - `ko.pureComputed`
+    - The function wrapper `() => { /* … */ }`
  - It’s hard to test `userHandle` because it accesses `userName` that has to be in its closure
 
 Let’s define some helpers and use some of javascript’s more functional features to streamline the process of creating computed values!
