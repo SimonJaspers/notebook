@@ -25,11 +25,11 @@ One of the beauties of `pureComputed` values is that they are lazily evaluated. 
 
 The example above is pretty useful but has some downsides:
 
-	- It’s not immediately clear that there’s a dependency to only `userName`
-	- There’s quite some noise surrounding the core logic we’re implementing:
-		- `ko.pureComputed`
-		- The function wrapper `() => { /* … */ }`
-	- It’s hard to test `userHandle` because it accesses `userName` that has to be in its closure
+ - It’s not immediately clear that there’s a dependency to only `userName`
+ - There’s quite some noise surrounding the core logic we’re implementing:
+  - `ko.pureComputed`
+  - The function wrapper `() => { /* … */ }`
+ - It’s hard to test `userHandle` because it accesses `userName` that has to be in its closure
 
 Let’s define some helpers and use some of javascript’s more functional features to streamline the process of creating computed values!
 
@@ -38,16 +38,16 @@ The pattern of having an `initial value + transform function = new value` is use
 
 ```js
 ko.subscribable.fn.map = function(mapper) {
-	return ko.pureComputed(() => mapper(this());
+  return ko.pureComputed(() => mapper(this());
 };	
 ```
 
 This method helps us fix the first two issues we described earlier:
 
 ```js
-  const userHandle = userName.map(
-    (name) => `@${name.toLowerCase().replace(/ /g, "-")}`
-  );
+const userHandle = userName.map(
+  (name) => `@${name.toLowerCase().replace(/ /g, "-")}`
+);
 ```
 
 We’ve managed to remove the inner call to `userName()`, and there’s no annoying syntax noise surrounding our core logic.
@@ -84,13 +84,16 @@ const userHandleAlt1 = userName
   .map(replace(/ /g, "-"))
   .map(prepend("@"));
   
-const userHandleAlt2 = userName
-  .map(
-    pipe(
-      toLower,
-      replace(/ /g, "-"),
-      prepend("@")
-    )
-  );
+const userHandleAlt2 = userName.map(
+  pipe(
+    toLower,
+    replace(/ /g, "-"),
+    prepend("@")
+  )
+);
   
+// userHandle ≈≈ userHandleAlt1 ≈≈ userHandleAlt2
 ```
+
+## ~~Computing~~ Concluding
+Knockout has some really cool reactive data types for us to use, but the syntax leaves room for improvement. Adding a `map` method is a great first step towards writing more declerative, easier-to-test knockout code.
