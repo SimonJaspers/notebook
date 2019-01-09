@@ -41,7 +41,7 @@ Let’s define some helpers and use some of javascript’s more functional featu
 ## Extending knockout with `map`
 The pattern of having an `initial value + transform function = new value` is used so often, that it could do with a method on every observable: `map`.
 
-Just like [`Array.prototype.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), enables us to take a function of `a → b` to transform an `Array of a` to an `Array of b`, we'll be able to transform a `Subscribable of a` to a `Subscribable of b`!
+Just like [`Array.prototype.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) enables us to take a function of `a → b` to transform an `Array of a` to an `Array of b`, we'll be able to transform a `Subscribable of a` to a `Subscribable of b`!
 
 ```js
 ko.subscribable.fn.map = function(mapper) {
