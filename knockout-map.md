@@ -3,13 +3,18 @@
 Knockout has `observable` and `computed` values. These value types are `subscribable`, meaning they can automatically notify other pieces of code whenever they change.
 
 ```js
+// Initialize userName as an observable empty string
 const userName = ko.observable("");
+
+// Define a userHandle based on the user name
 const userHandle = ko.pureComputed(
   () => `@${userName().toLowerCase().replace(/ /g, "-")}`
 );
 
+// Make sure that changes to the handle are logged
 userHandle.subscribe(console.log);
 
+// Change the userName to a real name
 userName("Sarah Jane Doe"); // Logs "@sarah-jane-doe"
 ```
 
