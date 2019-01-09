@@ -1,4 +1,4 @@
-# Adding a `map` method to knockout's subscribables
+# Mapping over observable values
 
 Knockout has `observable` and `computed` values. These value types are `subscribable`, meaning they can automatically notify other pieces of code whenever they change.
 
