@@ -22,7 +22,7 @@ userName("Sarah Jane Doe"); // Logs "@sarah-jane-doe"
 
 In the example above, `userHandle` is a computed variable. It takes a `userName`, prepends an `@`, transforms it to lower case and replaces spaces by dashes.
 
-Rather than just wrapping a value, a `pureComputed` defines *how to compute a value*. Whenever a value required for the computation changes, it reevaluates its own outcome. You can think of it as a machine that takes one or more *inputs* and a certain *calculation* to output a new value.
+Rather than just wrapping a static value in an observable container, a `pureComputed` defines *how to compute a value*. You can think of it as a machine that takes one or more *inputs* and a certain *calculation* to output a new value. Whenever a one of the required inputs for the computation changes, it reevaluates its own outcome. 
 
 One of the beauties of `pureComputed` values is that they are lazily evaluated. *When the computed value isn't used or needed elsewhere, it will not run its computation*. This explains the `pure` part of its name: since we can't be sure when or how often the computation runs, we cannot allow it to have side effects!
 
